@@ -1,0 +1,1 @@
+E:\ITP\XamarinApp\XamarinApp\XamarinApp.UWP\XamarinApp.UWP.csproj;x86

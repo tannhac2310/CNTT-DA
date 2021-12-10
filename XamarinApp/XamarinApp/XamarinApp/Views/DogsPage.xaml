@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:XamarinApp.Services"
+             xmlns:entity="clr-namespace:XamarinApp.Entity"
+             xmlns:views="clr-namespace:XamarinApp.Views"
+             x:Class="XamarinApp.Views.DogsPage"
+             Title="Dogs">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Blue"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <Shell.SearchHandler>
+        <services:AnimalSearchHandler Placeholder="Nhập gì đó..."
+                                      ShowsResults="true"
+                                      ItemTemplate="{StaticResource AnimalSearchTemplate}"
+                                      Animals="{x:Static entity:DogData.Dogs}"
+                                      SelectedItemNavigationTarget="{x:Type views:DogDetailPage}"/>
+    </Shell.SearchHandler>
+
+    <CollectionView Margin="20"
+                    ItemsSource="{x:Static entity:DogData.Dogs}"
+                    ItemTemplate="{StaticResource AnimalTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnCollectionViewSelectionChanged"/>
+
+
+</ContentPage>
